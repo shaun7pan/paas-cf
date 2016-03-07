@@ -327,6 +327,7 @@ jobs:
 
     - task: create-concourse-secrets
       config:
+        image: docker:///ruby#2.2.3-slim
         inputs:
         - name: paas-cf
         params:
