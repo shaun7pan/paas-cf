@@ -356,8 +356,9 @@ jobs:
             ./paas-cf/concourse/scripts/generate-concourse-secrets.rb >> \
             concourse-secrets/concourse-secrets.yml
             ls -l concourse-secrets/concourse-secrets.yml
-    - put: concourse-prepare-deploy
-      params: concourse-secrets/concourse-secrets.yml
+    - put: concourse-secrets
+      params:
+        file: concourse-secrets/concourse-secrets.yml
 
     - task: generate-concourse-manifest
       config:
