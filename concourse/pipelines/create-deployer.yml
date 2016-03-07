@@ -345,7 +345,7 @@ jobs:
             secrets:
               concourse_atc_password: ${concourse_atc_password}
             EOF
-            ./paas-cf/concourse/scripts/generate-concourse-secrets.rb > \
+            ./paas-cf/concourse/scripts/generate-concourse-secrets.rb >> \
             concourse-secrets/concourse-secrets.yml
             ls -l concourse-secrets/concourse-secrets.yml
 
