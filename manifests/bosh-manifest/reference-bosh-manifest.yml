@@ -178,6 +178,9 @@ releases:
 resource_pools:
 - cloud_properties:
     availability_zone: eu-west-1a
+    env:
+      bosh:
+        password: CONCOURSE_BOSH_VCAP_PASSWORD
     ephemeral_disk:
       size: 40000
       type: gp2
