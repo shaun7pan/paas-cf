@@ -132,6 +132,13 @@ resources:
       uri: https://github.com/cloudfoundry/cf-release
       tag_filter: {{cf-release-version}}
 
+  - name: concourse-secrets
+    type: s3-iam
+    source:
+      bucket: {{state_bucket}}
+      versioned_file: concourse-secrets.yml
+      region_name: {{aws_region}}
+
 jobs:
   - name: init
     serial_groups: [bosh-deploy]
@@ -332,6 +339,7 @@ jobs:
             - name: terraform-outputs
             - name: generated-bosh-secrets
             - name: generated-bosh-CA
+            - name: concourse-secrets
           outputs:
             - name: bosh-manifest
           params:
@@ -340,6 +348,7 @@ jobs:
               ./generated-bosh-CA/bosh-ca-cert.yml
               ./terraform-outputs/bosh.terraform-outputs.yml
               ./terraform-outputs/vpc.terraform-outputs.yml
+              ./consourse-secrets/concourse-secrets.yml
           run:
             path: sh
             args:

@@ -58,6 +58,13 @@ resources:
       versioned_file: concourse.yml
       region_name: {{aws_region}}
 
+  - name: concourse-secrets
+    type: s3-iam
+    source:
+      bucket: {{state_bucket}}
+      versioned_file: concourse-secrets.yml
+      region_name: {{aws_region}}
+
   - name: ssh-private-key
     type: s3-iam
     source:
@@ -297,6 +304,7 @@ jobs:
       passed: [vpc]
     - get: concourse-terraform-state
       passed: [concourse-terraform]
+    - get: concourse-secrets
 
     - task: terraform-outputs-to-yaml
       config:
@@ -348,6 +356,8 @@ jobs:
             ./paas-cf/concourse/scripts/generate-concourse-secrets.rb >> \
             concourse-secrets/concourse-secrets.yml
             ls -l concourse-secrets/concourse-secrets.yml
+    - put: concourse-prepare-deploy
+      params: concourse-secrets/concourse-secrets.yml
 
     - task: generate-concourse-manifest
       config:
