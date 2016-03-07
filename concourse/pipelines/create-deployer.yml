@@ -340,14 +340,13 @@ jobs:
           - -e
           - -c
           - |
-            ./paas-cf/concourse/scripts/generate-concourse-secrets.rb > \
-            concourse-secrets/concourse-supplementary-secrets.yml
             cat > concourse-secrets/concourse-secrets.yml << EOF
             ---
             secrets:
               concourse_atc_password: ${concourse_atc_password}
-              concourse_bosh_vcap_password: $()
             EOF
+            ./paas-cf/concourse/scripts/generate-concourse-secrets.rb > \
+            concourse-secrets/concourse-secrets.yml
             ls -l concourse-secrets/concourse-secrets.yml
 
     - task: generate-concourse-manifest
