@@ -327,6 +327,8 @@ jobs:
 
     - task: create-concourse-secrets
       config:
+        inputs:
+        - name: paas-cf
         params:
           concourse_atc_password: {{concourse_atc_password}}
         outputs:
