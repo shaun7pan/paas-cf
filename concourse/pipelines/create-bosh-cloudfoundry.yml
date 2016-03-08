@@ -249,6 +249,7 @@ jobs:
             passed: ['bosh-terraform']
           - get: bosh-tfstate
             passed: ['bosh-terraform']
+          - get: concourse-secrets
 
       - aggregate:
           - task: generate-secrets
