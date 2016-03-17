@@ -3,8 +3,8 @@ name: concourse
 
 releases:
   - name: concourse
-    url: https://bosh.io/d/github.com/concourse/concourse?v=0.74.0
-    sha1: c99ef709e9d4468ac25cca31dd5be1444417011d
+    url: https://bosh.io/d/github.com/concourse/concourse?v=0.75.0
+    sha1: 891a10b95e66343b3d43b91d30d9ff6835c156a3
   - name: garden-linux
     url: https://bosh.io/d/github.com/cloudfoundry-incubator/garden-linux-release?v=0.334.0
     sha1: 85170c5089fa4ff317f139c2f1da024860dbea85
