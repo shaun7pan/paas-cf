@@ -74,3 +74,6 @@ output "logsearch_elb_name" {
   value = "${aws_elb.logsearch_elb.name}"
 }
 
+output "cf_cells_security_group" {
+  value = "${aws_security_group.cf_cells.name}"
+}

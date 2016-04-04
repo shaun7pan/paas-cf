@@ -193,3 +193,26 @@ resource "aws_security_group" "logsearch_elb" {
   }
 }
 
+resource "aws_security_group" "cf_cells" {
+  name = "${var.env}-cf-cells"
+  description = "Security group for CF cells"
+  vpc_id = "${var.vpc_id}"
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    cidr_blocks = ["${var.vpc_cidr}"]
+  }
+
+  tags {
+    Name = "${var.env}-cf-cells"
+  }
+}
