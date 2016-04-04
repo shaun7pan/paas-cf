@@ -175,8 +175,8 @@ releases:
   sha1: 940956a23b642af3bb24b3cac37c4da746d6f9a9
   url: https://bosh.io/d/github.com/cloudfoundry/bosh?v=253
 - name: bosh-aws-cpi
-  sha1: a1fe03071e8b9bf1fa97a4022151081bf144c8bc
-  url: https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-aws-cpi-release?v=44
+  sha1: 0d39ad22f61ebc57af56c10c05a0044321c69662
+  url: https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-aws-cpi-release?v=46
 resource_pools:
 - cloud_properties:
     availability_zone: eu-west-1a
