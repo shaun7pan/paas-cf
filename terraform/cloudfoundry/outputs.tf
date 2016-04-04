@@ -89,3 +89,11 @@ output "consul_client_security_group" {
 output "elb_to_router_security_group" {
   value = "${aws_security_group.elb_to_router.name}"
 }
+
+output "file_server_security_group" {
+  value = "${aws_security_group.file_server.name}"
+}
+
+output "file_server_client_security_group" {
+  value = "${aws_security_group.file_server_client.name}"
+}

@@ -258,3 +258,29 @@ resource "aws_security_group" "consul_client" {
   }
 }
 
+resource "aws_security_group" "file_server" {
+  name = "${var.env}-file_server"
+  description = "Security group for file_server"
+  vpc_id = "${var.vpc_id}"
+
+  ingress {
+    from_port = 8080
+    to_port   = 8080
+    protocol  = "tcp"
+    security_groups = ["${aws_security_group.file_server_client.id}"]
+  }
+
+  tags {
+    Name = "${var.env}-file_server"
+  }
+}
+
+resource "aws_security_group" "file_server_client" {
+  name = "${var.env}-file_server-client"
+  description = "Security group for file_server clients"
+  vpc_id = "${var.vpc_id}"
+
+  tags {
+    Name = "${var.env}-file_server-client"
+  }
+}
