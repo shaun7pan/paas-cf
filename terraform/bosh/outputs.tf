@@ -19,11 +19,11 @@ output "bosh_subnet_id" {
 }
 
 output "bosh_security_group" {
-  value = "${aws_security_group.bosh.name}"
+  value = "${aws_security_group.bosh_server.name}"
 }
 
 output "default_security_group" {
-  value = "${aws_security_group.bosh_managed.name}"
+  value = "${aws_security_group.bosh_client.name}"
 }
 
 output "microbosh_static_private_ip" {

@@ -1,5 +1,5 @@
-resource "aws_security_group" "bosh" {
-  name = "${var.env}-bosh"
+resource "aws_security_group" "bosh_server" {
+  name = "${var.env}-bosh-server"
   description = "Bosh security group"
   vpc_id = "${var.vpc_id}"
 
@@ -43,7 +43,7 @@ resource "aws_security_group" "bosh" {
     to_port   = 4222
     protocol  = "tcp"
     security_groups = [
-      "${aws_security_group.bosh_managed.id}",
+      "${aws_security_group.bosh_client.id}",
     ]
   }
 
@@ -52,7 +52,7 @@ resource "aws_security_group" "bosh" {
     to_port   = 25250
     protocol  = "tcp"
     security_groups = [
-      "${aws_security_group.bosh_managed.id}",
+      "${aws_security_group.bosh_client.id}",
     ]
   }
 
@@ -62,12 +62,12 @@ resource "aws_security_group" "bosh" {
     to_port   = 25777
     protocol  = "tcp"
     security_groups = [
-      "${aws_security_group.bosh_managed.id}",
+      "${aws_security_group.bosh_client.id}",
     ]
   }
 
   tags {
-    Name = "${var.env}-bosh"
+    Name = "${var.env}-bosh-server"
   }
 }
 
@@ -80,28 +80,3 @@ resource "aws_security_group" "bosh_client" {
     Name = "${var.env}-bosh-client"
   }
 }
-
-resource "aws_security_group" "bosh_managed" {
-  name = "${var.env}-bosh-managed"
-  description = "Default security group for VMs managed by Bosh"
-  vpc_id = "${var.vpc_id}"
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
-    cidr_blocks = ["${var.vpc_cidr}"]
-  }
-
-  tags {
-    Name = "${var.env}-bosh-managed"
-  }
-}
-
