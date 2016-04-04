@@ -215,7 +215,7 @@ jobs:
     templates: (( grab meta.consul_templates ))
     instances: 1
     persistent_disk: 1024
-    resource_pool: small_z1
+    resource_pool: consul_z1
     networks:
       - name: cf1
         static_ips:
@@ -232,7 +232,7 @@ jobs:
     templates: (( grab meta.consul_templates ))
     instances: 1
     persistent_disk: 1024
-    resource_pool: small_z2
+    resource_pool: consul_z2
     networks:
       - name: cf2
         static_ips:
@@ -287,7 +287,7 @@ jobs:
     templates: (( grab meta.consul_templates ))
     instances: 1
     persistent_disk: 1024
-    resource_pool: small_z3
+    resource_pool: consul_z3
     networks:
       - name: cf3
         static_ips:

@@ -25,6 +25,9 @@ networks:
         - 10.0.0.2
       cloud_properties:
         subnet: (( grab terraform_outputs.cf1_subnet_id ))
+        security_groups:
+          - (( grab terraform_outputs.default_security_group ))
+          - (( grab terraform_outputs.consul_client_security_group ))
 
 - name: cf1_rds
   subnets:
@@ -43,6 +46,7 @@ networks:
         subnet: (( grab terraform_outputs.cf1_subnet_id ))
         security_groups:
           - (( grab terraform_outputs.default_security_group ))
+          - (( grab terraform_outputs.consul_client_security_group ))
           - (( grab terraform_outputs.cf_rds_client_security_group ))
 
 - name: cf2
@@ -60,6 +64,9 @@ networks:
         - 10.0.0.2
       cloud_properties:
         subnet: (( grab terraform_outputs.cf2_subnet_id ))
+        security_groups:
+          - (( grab terraform_outputs.default_security_group ))
+          - (( grab terraform_outputs.consul_client_security_group ))
 
 - name: cf2_rds
   subnets:
@@ -78,6 +85,7 @@ networks:
         subnet: (( grab terraform_outputs.cf2_subnet_id ))
         security_groups:
           - (( grab terraform_outputs.default_security_group ))
+          - (( grab terraform_outputs.consul_client_security_group ))
           - (( grab terraform_outputs.cf_rds_client_security_group ))
 
 - name: cf3
@@ -94,6 +102,9 @@ networks:
         - 10.0.0.2
       cloud_properties:
         subnet: (( grab terraform_outputs.cf3_subnet_id ))
+        security_groups:
+          - (( grab terraform_outputs.default_security_group ))
+          - (( grab terraform_outputs.consul_client_security_group ))
 
 - name: cf3_rds
   subnets:
@@ -112,6 +123,7 @@ networks:
         subnet: (( grab terraform_outputs.cf3_subnet_id ))
         security_groups:
           - (( grab terraform_outputs.default_security_group ))
+          - (( grab terraform_outputs.consul_client_security_group ))
           - (( grab terraform_outputs.cf_rds_client_security_group ))
 
 - name: cell1
@@ -126,6 +138,7 @@ networks:
         subnet: (( grab terraform_outputs.cell1_subnet_id ))
         security_groups:
           - (( grab terraform_outputs.cf_cells_security_group ))
+          - (( grab terraform_outputs.consul_client_security_group ))
           - (( grab terraform_outputs.bosh_client_security_group ))
 
 - name: cell2
@@ -140,6 +153,7 @@ networks:
         subnet: (( grab terraform_outputs.cell2_subnet_id ))
         security_groups:
           - (( grab terraform_outputs.cf_cells_security_group ))
+          - (( grab terraform_outputs.consul_client_security_group ))
           - (( grab terraform_outputs.bosh_client_security_group ))
 
 - name: router1
@@ -154,6 +168,10 @@ networks:
         - 10.0.0.2
       cloud_properties:
         subnet: (( grab terraform_outputs.router1_subnet_id ))
+        security_groups:
+          - (( grab terraform_outputs.default_security_group ))
+          - (( grab terraform_outputs.consul_client_security_group ))
+
 - name: router2
   subnets:
     - range: 10.0.49.0/24
@@ -166,7 +184,9 @@ networks:
         - 10.0.0.2
       cloud_properties:
         subnet: (( grab terraform_outputs.router2_subnet_id ))
-
+        security_groups:
+          - (( grab terraform_outputs.default_security_group ))
+          - (( grab terraform_outputs.consul_client_security_group ))
 
 properties:
   domain: (( grab terraform_outputs.cf_root_domain ))

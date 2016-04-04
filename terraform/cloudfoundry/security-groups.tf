@@ -216,3 +216,45 @@ resource "aws_security_group" "cf_cells" {
     Name = "${var.env}-cf-cells"
   }
 }
+
+resource "aws_security_group" "consul_server" {
+  name = "${var.env}-consul-server"
+  description = "Security group for Consul server"
+  vpc_id = "${var.vpc_id}"
+
+  ingress {
+    from_port = 8300
+    to_port   = 8300
+    protocol  = "tcp"
+    security_groups = ["${aws_security_group.consul_client.id}"]
+  }
+
+  tags {
+    Name = "${var.env}-consul-server"
+  }
+}
+
+resource "aws_security_group" "consul_client" {
+  name = "${var.env}-consul-client"
+  description = "Security group for Consul clients"
+  vpc_id = "${var.vpc_id}"
+
+  ingress {
+    from_port = 8301
+    to_port   = 8301
+    protocol  = "tcp"
+    self      = true
+  }
+
+  ingress {
+    from_port = 8301
+    to_port   = 8301
+    protocol  = "udp"
+    self      = true
+  }
+
+  tags {
+    Name = "${var.env}-consul-client"
+  }
+}
+

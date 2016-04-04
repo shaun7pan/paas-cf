@@ -77,3 +77,11 @@ output "logsearch_elb_name" {
 output "cf_cells_security_group" {
   value = "${aws_security_group.cf_cells.name}"
 }
+
+output "consul_server_security_group" {
+  value = "${aws_security_group.consul_server.name}"
+}
+
+output "consul_client_security_group" {
+  value = "${aws_security_group.consul_client.name}"
+}
