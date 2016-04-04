@@ -23,6 +23,24 @@ resource "aws_elb" "router" {
   }
 }
 
+resource "aws_security_group" "elb_to_router" {
+  name = "${var.env}-elb-to-router"
+  description = "Security group from router ELB to router VMs"
+  vpc_id = "${var.vpc_id}"
+
+  ingress {
+    from_port       = 443
+    to_port         = 443
+    protocol        = "tcp"
+    security_groups = ["${aws_elb.router.source_security_group_id}"]
+  }
+
+  tags {
+    Name = "${var.env}-elb-to-router"
+  }
+}
+
+
 resource "aws_elb" "ssh-proxy-router" {
   name = "${var.env}-ssh-proxy-elb"
   subnets = ["${split(",", var.infra_subnet_ids)}"]

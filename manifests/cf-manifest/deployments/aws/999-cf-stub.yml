@@ -171,6 +171,7 @@ networks:
         security_groups:
           - (( grab terraform_outputs.default_security_group ))
           - (( grab terraform_outputs.consul_client_security_group ))
+          - (( grab terraform_outputs.elb_to_router_security_group ))
 
 - name: router2
   subnets:
@@ -187,6 +188,7 @@ networks:
         security_groups:
           - (( grab terraform_outputs.default_security_group ))
           - (( grab terraform_outputs.consul_client_security_group ))
+          - (( grab terraform_outputs.elb_to_router_security_group ))
 
 properties:
   domain: (( grab terraform_outputs.cf_root_domain ))
