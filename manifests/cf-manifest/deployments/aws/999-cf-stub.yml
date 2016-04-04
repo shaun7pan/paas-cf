@@ -126,6 +126,7 @@ networks:
         subnet: (( grab terraform_outputs.cell1_subnet_id ))
         security_groups:
           - (( grab terraform_outputs.cf_cells_security_group ))
+          - (( grab terraform_outputs.bosh_client_security_group ))
 
 - name: cell2
   subnets:
@@ -139,6 +140,7 @@ networks:
         subnet: (( grab terraform_outputs.cell2_subnet_id ))
         security_groups:
           - (( grab terraform_outputs.cf_cells_security_group ))
+          - (( grab terraform_outputs.bosh_client_security_group ))
 
 - name: router1
   subnets:

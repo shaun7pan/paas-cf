@@ -26,6 +26,10 @@ output "default_security_group" {
   value = "${aws_security_group.bosh_managed.name}"
 }
 
+output "bosh_client_security_group" {
+  value = "${aws_security_group.bosh_client.name}"
+}
+
 output "microbosh_static_private_ip" {
   value = "${var.microbosh_static_private_ip}"
 }

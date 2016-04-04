@@ -43,6 +43,7 @@ resource "aws_security_group" "bosh" {
     protocol  = "tcp"
     security_groups = [
       "${aws_security_group.bosh_managed.id}",
+      "${aws_security_group.bosh_client.id}",
     ]
   }
 
@@ -52,6 +53,7 @@ resource "aws_security_group" "bosh" {
     protocol  = "tcp"
     security_groups = [
       "${aws_security_group.bosh_managed.id}",
+      "${aws_security_group.bosh_client.id}",
     ]
   }
 
@@ -62,6 +64,7 @@ resource "aws_security_group" "bosh" {
     protocol  = "tcp"
     security_groups = [
       "${aws_security_group.bosh_managed.id}",
+      "${aws_security_group.bosh_client.id}",
     ]
   }
 
