@@ -33,7 +33,6 @@ resource "aws_security_group" "bosh" {
     to_port   = 25555
     protocol  = "tcp"
     security_groups = [
-      "${aws_security_group.bosh_client.id}",
       "${var.concourse_security_group_id}"
     ]
   }
