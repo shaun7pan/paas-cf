@@ -102,8 +102,23 @@ resource "aws_security_group" "bosh_managed" {
     self      = true
   }
 
+  ingress {
+    from_port = 22
+    to_port   = 22
+    protocol  = "tcp"
+    security_groups = [
+      "${var.concourse_security_group_id}"
+    ]
+  }
+
+  ingress {
+    from_port = 8
+    to_port   = 0
+    protocol  = "icmp"
+    self      = true
+  }
+
   tags {
     Name = "${var.env}-bosh-managed"
   }
 }
-
