@@ -247,6 +247,7 @@ resource_pools:
         - (( grab terraform_outputs.default_security_group ))
         - (( grab terraform_outputs.consul_client_security_group ))
         - (( grab terraform_outputs.ccuploader_server_security_group ))
+        - (( grab terraform_outputs.bbs_server_security_group ))
 
   - name: colocated_z2
     cloud_properties:
@@ -257,6 +258,7 @@ resource_pools:
         - (( grab terraform_outputs.default_security_group ))
         - (( grab terraform_outputs.consul_client_security_group ))
         - (( grab terraform_outputs.ccuploader_server_security_group ))
+        - (( grab terraform_outputs.bbs_server_security_group ))
 
 # set up static IPs
 jobs:

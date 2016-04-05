@@ -121,3 +121,11 @@ output "statsd_server_security_group" {
 output "statsd_client_security_group" {
   value = "${aws_security_group.statsd_client.name}"
 }
+
+output "bbs_server_security_group" {
+  value = "${aws_security_group.bbs_server.name}"
+}
+
+output "bbs_client_security_group" {
+  value = "${aws_security_group.bbs_client.name}"
+}

@@ -144,6 +144,7 @@ networks:
           - (( grab terraform_outputs.ccuploader_client_security_group ))
           - (( grab terraform_outputs.doppler_client_security_group ))
           - (( grab terraform_outputs.statsd_client_security_group ))
+          - (( grab terraform_outputs.bbs_client_security_group ))
 
 - name: cell2
   subnets:
@@ -163,6 +164,7 @@ networks:
           - (( grab terraform_outputs.ccuploader_client_security_group ))
           - (( grab terraform_outputs.doppler_client_security_group ))
           - (( grab terraform_outputs.statsd_client_security_group ))
+          - (( grab terraform_outputs.bbs_client_security_group ))
 
 - name: router1
   subnets:

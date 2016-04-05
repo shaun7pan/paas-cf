@@ -365,3 +365,30 @@ resource "aws_security_group" "statsd_client" {
     Name = "${var.env}-statsd-client"
   }
 }
+
+resource "aws_security_group" "bbs_server" {
+  name = "${var.env}-bbs-server"
+  description = "Security group for bbs server"
+  vpc_id = "${var.vpc_id}"
+
+  ingress {
+    from_port = 8889
+    to_port   = 8889
+    protocol  = "tcp"
+    security_groups = ["${aws_security_group.bbs_client.id}"]
+  }
+
+  tags {
+    Name = "${var.env}-bbs-server"
+  }
+}
+
+resource "aws_security_group" "bbs_client" {
+  name = "${var.env}-bbs-client"
+  description = "Security group for bbs clients"
+  vpc_id = "${var.vpc_id}"
+
+  tags {
+    Name = "${var.env}-bbs-client"
+  }
+}
