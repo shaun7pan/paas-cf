@@ -97,3 +97,11 @@ output "file_server_security_group" {
 output "file_server_client_security_group" {
   value = "${aws_security_group.file_server_client.name}"
 }
+
+output "ccuploader_server_security_group" {
+  value = "${aws_security_group.ccuploader_server.name}"
+}
+
+output "ccuploader_client_security_group" {
+  value = "${aws_security_group.ccuploader_client.name}"
+}

@@ -284,3 +284,30 @@ resource "aws_security_group" "file_server_client" {
     Name = "${var.env}-file_server-client"
   }
 }
+
+resource "aws_security_group" "ccuploader_server" {
+  name = "${var.env}-ccuploader-server"
+  description = "Security group for ccuploader server"
+  vpc_id = "${var.vpc_id}"
+
+  ingress {
+    from_port = 9090
+    to_port   = 9090
+    protocol  = "tcp"
+    security_groups = ["${aws_security_group.ccuploader_client.id}"]
+  }
+
+  tags {
+    Name = "${var.env}-ccuploader-server"
+  }
+}
+
+resource "aws_security_group" "ccuploader_client" {
+  name = "${var.env}-ccuploader-client"
+  description = "Security group for ccuploader clients"
+  vpc_id = "${var.vpc_id}"
+
+  tags {
+    Name = "${var.env}-ccuploader-client"
+  }
+}
