@@ -122,6 +122,9 @@ resource_pools:
         size: 65_536
         type: gp2
       availability_zone: (( grab meta.zones.z1 ))
+      security_groups:
+        - (( grab terraform_outputs.default_security_group ))
+        - (( grab terraform_outputs.cc_server_security_group ))
 
   - name: api_z2
     cloud_properties:
@@ -131,6 +134,9 @@ resource_pools:
         size: 65_536
         type: gp2
       availability_zone: (( grab meta.zones.z2 ))
+      security_groups:
+        - (( grab terraform_outputs.default_security_group ))
+        - (( grab terraform_outputs.cc_server_security_group ))
 
   - name: router_z1
     cloud_properties:

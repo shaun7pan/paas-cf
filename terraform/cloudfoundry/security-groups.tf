@@ -392,3 +392,30 @@ resource "aws_security_group" "bbs_client" {
     Name = "${var.env}-bbs-client"
   }
 }
+
+resource "aws_security_group" "cc_server" {
+  name = "${var.env}-cc-server"
+  description = "Security group for cc server"
+  vpc_id = "${var.vpc_id}"
+
+  ingress {
+    from_port = 9022
+    to_port   = 9022
+    protocol  = "tcp"
+    security_groups = ["${aws_security_group.cc_client.id}"]
+  }
+
+  tags {
+    Name = "${var.env}-cc-server"
+  }
+}
+
+resource "aws_security_group" "cc_client" {
+  name = "${var.env}-cc-client"
+  description = "Security group for cc clients"
+  vpc_id = "${var.vpc_id}"
+
+  tags {
+    Name = "${var.env}-cc-client"
+  }
+}
