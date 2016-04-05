@@ -16,6 +16,9 @@ resource_pools:
       availability_zone: (( grab meta.zones.z1 ))
       elbs:
         - (( grab terraform_outputs.metrics_elb_name ))
+      security_groups:
+        - (( grab terraform_outputs.default_security_group ))
+        - (( grab terraform_outputs.statsd_server_security_group ))
 
 jobs:
   - name: graphite_z1

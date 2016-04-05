@@ -113,3 +113,11 @@ output "doppler_server_security_group" {
 output "doppler_client_security_group" {
   value = "${aws_security_group.doppler_client.name}"
 }
+
+output "statsd_server_security_group" {
+  value = "${aws_security_group.statsd_server.name}"
+}
+
+output "statsd_client_security_group" {
+  value = "${aws_security_group.statsd_client.name}"
+}

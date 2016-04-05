@@ -338,3 +338,30 @@ resource "aws_security_group" "doppler_client" {
     Name = "${var.env}-doppler-client"
   }
 }
+
+resource "aws_security_group" "statsd_server" {
+  name = "${var.env}-statsd-server"
+  description = "Security group for statsd server"
+  vpc_id = "${var.vpc_id}"
+
+  ingress {
+    from_port = 8125
+    to_port   = 8125
+    protocol  = "tcp"
+    security_groups = ["${aws_security_group.statsd_client.id}"]
+  }
+
+  tags {
+    Name = "${var.env}-statsd-server"
+  }
+}
+
+resource "aws_security_group" "statsd_client" {
+  name = "${var.env}-statsd-client"
+  description = "Security group for statsd clients"
+  vpc_id = "${var.vpc_id}"
+
+  tags {
+    Name = "${var.env}-statsd-client"
+  }
+}
