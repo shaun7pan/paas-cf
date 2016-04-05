@@ -105,3 +105,11 @@ output "ccuploader_server_security_group" {
 output "ccuploader_client_security_group" {
   value = "${aws_security_group.ccuploader_client.name}"
 }
+
+output "doppler_server_security_group" {
+  value = "${aws_security_group.doppler_server.name}"
+}
+
+output "doppler_client_security_group" {
+  value = "${aws_security_group.doppler_client.name}"
+}

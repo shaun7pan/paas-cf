@@ -311,3 +311,30 @@ resource "aws_security_group" "ccuploader_client" {
     Name = "${var.env}-ccuploader-client"
   }
 }
+
+resource "aws_security_group" "doppler_server" {
+  name = "${var.env}-doppler-server"
+  description = "Security group for doppler server"
+  vpc_id = "${var.vpc_id}"
+
+  ingress {
+    from_port = 3457
+    to_port   = 3457
+    protocol  = "tcp"
+    security_groups = ["${aws_security_group.doppler_client.id}"]
+  }
+
+  tags {
+    Name = "${var.env}-doppler-server"
+  }
+}
+
+resource "aws_security_group" "doppler_client" {
+  name = "${var.env}-doppler-client"
+  description = "Security group for doppler clients"
+  vpc_id = "${var.vpc_id}"
+
+  tags {
+    Name = "${var.env}-doppler-client"
+  }
+}
