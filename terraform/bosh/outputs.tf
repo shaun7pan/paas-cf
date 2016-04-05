@@ -26,6 +26,10 @@ output "default_security_group" {
   value = "${aws_security_group.bosh_managed.name}"
 }
 
+output "bosh_managed_security_group_id" {
+  value = "${aws_security_group.bosh_managed.id}"
+}
+
 output "bosh_client_security_group" {
   value = "${aws_security_group.bosh_client.name}"
 }

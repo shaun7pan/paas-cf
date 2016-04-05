@@ -117,3 +117,7 @@ variable "apps_dns_zone_name" {
 variable "router_external_cert_arn" {
   description = "Amazon ARN for the public facing certificate to be used on the router"
 }
+
+variable "bosh_managed_security_group_id" {
+  description = "bosh managed security group id"
+}

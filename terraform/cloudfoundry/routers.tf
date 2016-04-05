@@ -48,6 +48,7 @@ resource "aws_elb" "ssh-proxy-router" {
   cross_zone_load_balancing = "true"
   security_groups = [
     "${aws_security_group.sshproxy.id}",
+    "${var.bosh_managed_security_group_id}",
   ]
 
   health_check {
@@ -73,6 +74,7 @@ resource "aws_elb" "ingestor_elb" {
   internal = "true"
   security_groups = [
     "${aws_security_group.ingestor_elb.id}",
+    "${var.bosh_managed_security_group_id}",
   ]
 
   health_check {
@@ -104,6 +106,7 @@ resource "aws_elb" "es_master_elb" {
   internal = "true"
   security_groups = [
     "${aws_security_group.elastic_master_elb.id}",
+    "${var.bosh_managed_security_group_id}",
   ]
 
   health_check {
@@ -137,6 +140,7 @@ resource "aws_elb" "logsearch_elb" {
   cross_zone_load_balancing = "true"
   security_groups = [
     "${aws_security_group.logsearch_elb.id}",
+    "${var.bosh_managed_security_group_id}",
   ]
 
   health_check {
@@ -172,6 +176,7 @@ resource "aws_elb" "metrics_elb" {
   cross_zone_load_balancing = "true"
   security_groups = [
     "${aws_security_group.metrics_elb.id}",
+    "${var.bosh_managed_security_group_id}",
   ]
 
   health_check {
