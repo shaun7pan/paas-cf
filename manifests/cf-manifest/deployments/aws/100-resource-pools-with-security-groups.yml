@@ -71,3 +71,45 @@ resource_pools:
       security_groups:
         - (( grab terraform_outputs.doppler_server_security_group))
         - (( grab terraform_outputs.default_security_group ))
+
+  - name: etcd_z1
+    network: cf1
+    stemcell: (( grab meta.stemcell ))
+    env: (( grab meta.default_env ))
+    cloud_properties:
+      instance_type: m3.medium
+      ephemeral_disk:
+        size: 10_240
+        type: gp2
+      availability_zone: (( grab meta.zones.z1 ))
+      security_groups:
+        - (( grab terraform_outputs.default_security_group ))
+        - (( grab terraform_outputs.etcd_server_security_group))
+
+  - name: etcd_z2
+    network: cf2
+    stemcell: (( grab meta.stemcell ))
+    env: (( grab meta.default_env ))
+    cloud_properties:
+      instance_type: m3.medium
+      ephemeral_disk:
+        size: 10_240
+        type: gp2
+      availability_zone: (( grab meta.zones.z2 ))
+      security_groups:
+        - (( grab terraform_outputs.default_security_group ))
+        - (( grab terraform_outputs.etcd_server_security_group))
+
+  - name: etcd_z3
+    network: cf3
+    stemcell: (( grab meta.stemcell ))
+    env: (( grab meta.default_env ))
+    cloud_properties:
+      instance_type: m3.medium
+      ephemeral_disk:
+        size: 10_240
+        type: gp2
+      availability_zone: (( grab meta.zones.z3 ))
+      security_groups:
+        - (( grab terraform_outputs.default_security_group ))
+        - (( grab terraform_outputs.etcd_server_security_group))

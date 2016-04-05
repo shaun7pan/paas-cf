@@ -146,6 +146,7 @@ networks:
           - (( grab terraform_outputs.statsd_client_security_group ))
           - (( grab terraform_outputs.bbs_client_security_group ))
           - (( grab terraform_outputs.cc_client_security_group ))
+          - (( grab terraform_outputs.etcd_client_security_group ))
 
 - name: cell2
   subnets:
@@ -167,6 +168,7 @@ networks:
           - (( grab terraform_outputs.statsd_client_security_group ))
           - (( grab terraform_outputs.bbs_client_security_group ))
           - (( grab terraform_outputs.cc_client_security_group ))
+          - (( grab terraform_outputs.etcd_client_security_group ))
 
 - name: router1
   subnets:

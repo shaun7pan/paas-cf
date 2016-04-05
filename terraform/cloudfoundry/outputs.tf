@@ -137,3 +137,11 @@ output "cc_server_security_group" {
 output "cc_client_security_group" {
   value = "${aws_security_group.cc_client.name}"
 }
+
+output "etcd_server_security_group" {
+  value = "${aws_security_group.etcd_server.name}"
+}
+
+output "etcd_client_security_group" {
+  value = "${aws_security_group.etcd_client.name}"
+}

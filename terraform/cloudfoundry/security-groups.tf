@@ -419,3 +419,31 @@ resource "aws_security_group" "cc_client" {
     Name = "${var.env}-cc-client"
   }
 }
+
+resource "aws_security_group" "etcd_server" {
+  name = "${var.env}-etcd-server"
+  description = "Security group for etcd server"
+  vpc_id = "${var.vpc_id}"
+
+  ingress {
+    from_port = 4001
+    to_port   = 4001
+    protocol  = "tcp"
+    security_groups = ["${aws_security_group.etcd_client.id}"]
+  }
+
+  tags {
+    Name = "${var.env}-etcd-server"
+  }
+}
+
+resource "aws_security_group" "etcd_client" {
+  name = "${var.env}-etcd-client"
+  description = "Security group for etcd clients"
+  vpc_id = "${var.vpc_id}"
+
+  tags {
+    Name = "${var.env}-etcd-client"
+
+  }
+}

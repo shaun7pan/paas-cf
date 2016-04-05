@@ -269,7 +269,7 @@ jobs:
     templates: (( grab meta.etcd_templates ))
     instances: 1
     persistent_disk: 10024
-    resource_pool: medium_z1
+    resource_pool: etcd_z1
     networks:
       - name: cf1
         static_ips:
@@ -302,7 +302,7 @@ jobs:
     templates: (( grab meta.etcd_templates ))
     instances: 1
     persistent_disk: 10024
-    resource_pool: medium_z2
+    resource_pool: etcd_z2
     networks:
       - name: cf2
         static_ips:
@@ -318,7 +318,7 @@ jobs:
     templates: (( grab meta.etcd_templates ))
     instances: 1
     persistent_disk: 10024
-    resource_pool: medium_z3
+    resource_pool: etcd_z3
     networks:
       - name: cf3
         static_ips:
