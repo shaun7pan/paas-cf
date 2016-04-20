@@ -84,6 +84,13 @@ resources:
       uri: https://github.com/alphagov/paas-grafana-boshrelease.git
       tag_filter: {{cf_grafana_version}}
 
+  - name: aws-broker-boshrelease
+    type: git
+    source:
+      uri: https://github.com/alphagov/paas-aws-broker-boshrelease.git
+      branch: 117512347_rds_service_broker
+      tag_filter: {{cf_aws_broker_version}}
+
   - name: graphite-nozzle
     type: git
     source:
@@ -944,6 +951,7 @@ jobs:
           - get: bosh-secrets
           - get: graphite-statsd-boshrelease
           - get: grafana-boshrelease
+          - get: aws-broker-boshrelease
       - task: upload-releases
         config:
           platform: linux
@@ -953,6 +961,7 @@ jobs:
             - name: bosh-secrets
             - name: graphite-statsd-boshrelease
             - name: grafana-boshrelease
+            - name: aws-broker-boshrelease
           run:
             path: sh
             args:
@@ -966,6 +975,9 @@ jobs:
 
                 paas-cf/concourse/scripts/bosh_create_and_upload_release.rb grafana \
                   {{cf_grafana_version}} grafana-boshrelease
+
+                paas-cf/concourse/scripts/bosh_create_and_upload_release.rb aws-broker \
+                {{cf_aws_broker_version}} aws-broker-boshrelease
 
       - task: cf-deploy
         config:
