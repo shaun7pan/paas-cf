@@ -37,7 +37,7 @@ resource "aws_db_parameter_group" "default" {
 resource "aws_db_instance" "bosh" {
   identifier = "${var.env}-bosh"
   name = "bosh"
-  allocated_storage = 5
+  allocated_storage = 10
   engine = "postgres"
   engine_version = "9.4.5"
   instance_class = "db.t2.medium"
