@@ -76,6 +76,9 @@ system_dns_zone_name: ${SYSTEM_DNS_ZONE_NAME}
 apps_dns_zone_name: ${APPS_DNS_ZONE_NAME}
 git_concourse_pool_clone_full_url_ssh: ${git_concourse_pool_clone_full_url_ssh}
 ALERT_EMAIL_ADDRESS: ${ALERT_EMAIL_ADDRESS:-}
+bosh_az: ${BOSH_AZ:-}
+bosh_manifest_state: bosh-manifest-state-${BOSH_AZ:-eu-west-1a}.json
+bosh_fqdn: bosh.${SYSTEM_DNS_ZONE_NAME}
 EOF
   echo -e "pipeline_lock_git_private_key: |\n  ${git_id_rsa//$'\n'/$'\n'  }"
 }
