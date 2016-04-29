@@ -1,5 +1,5 @@
 cloud_provider:
-  mbus: https://mbus:BOSH_NATS_PASSWORD@10.0.0.6:6868
+  mbus: https://mbus:BOSH_NATS_PASSWORD@bosh.example.com:6868
   properties:
     agent:
       mbus: https://mbus:BOSH_NATS_PASSWORD@0.0.0.0:6868
@@ -45,7 +45,7 @@ jobs:
   persistent_disk_pool: disks
   properties:
     agent:
-      mbus: nats://nats:BOSH_NATS_PASSWORD@10.0.0.6:4222
+      mbus: nats://nats:BOSH_NATS_PASSWORD@bosh.example.com:4222
     aws:
       credentials_source: env_or_profile
       default_iam_instance_profile: bosh-managed
@@ -177,7 +177,7 @@ resource_pools:
       type: gp2
     iam_instance_profile: bosh-director
     instance_type: t2.medium
-  env:  
+  env:
     bosh:
       password: BOSH_VCAP_PASSWORD
   name: vms
