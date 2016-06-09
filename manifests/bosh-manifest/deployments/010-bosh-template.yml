@@ -15,7 +15,7 @@ name: bosh
 
 releases:
 - name: bosh
-  url: https://bosh.io/d/github.com/cloudfoundry/bosh?v=255.8
+  url: https://bosh.io/d/github.com/cloudfoundry/bosh?v=256.6
   sha1: 6b12652650b87810dcef1be1f6a6d23f1c0c13a7
 
 
