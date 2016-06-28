@@ -8,6 +8,7 @@ properties:
     skip_ssl_validation: false
     backend: "diego"
     client_secret: (( grab secrets.uaa_clients_gorouter_secret ))
+    nodes: 8
     skip_diego_unsupported_tests: true
     include_tasks: false
     include_v3: false
