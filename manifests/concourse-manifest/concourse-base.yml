@@ -82,20 +82,27 @@ jobs:
     properties:
       atc:
         external_url: (( concat "https://" terraform_outputs.concourse_dns_name ))
-        basic_auth_username: admin
-        basic_auth_password: (( grab secrets.concourse_atc_password ))
-        publicly_viewable: true
-        postgresql:
-          address: 127.0.0.1:5432
-          role: &atc-role
-            name: atc
-            password: dummy-password
+      external_url: (( concat "https://" terraform_outputs.concourse_dns_name ))
+      basic_auth_username: admin
+      basic_auth_password: (( grab secrets.concourse_atc_password ))
+      publicly_viewable: true
+
+      databases: 
+        - name: atc
+          role: atc
+          password: dummy-password
 
       postgresql:
-        databases: [{name: atc}]
         roles:
           - *atc-role
+        address: 127.0.0.1:5432
+        database: atc
+        role: &atc-role
+          name: atc
+          password: dummy-password
       tsa:
+        host: 127.0.0.1
+        port: 2222
         forward_host: 127.0.0.1
         atc:
           address: 127.0.0.1:8080
@@ -103,11 +110,9 @@ jobs:
         listen_network: tcp
         listen_address: 0.0.0.0:7777
         graph_cleanup_threshold_in_mb: 3072
+      baggageclaim:
+        url: "http://127.0.0.1:7788"
       groundcrew:
-        baggageclaim:
-          url: "http://127.0.0.1:7788"
-        tsa:
-          host: 127.0.0.1
         additional_resource_types:
           - { type: s3-iam, image: "docker:///governmentpaas/s3-resource" }
           - { type: semver-iam, image: "docker:///governmentpaas/semver-resource" }
