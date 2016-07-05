@@ -80,24 +80,20 @@ jobs:
         default: [dns, gateway]
 
     properties:
-      atc:
-        external_url: (( concat "https://" terraform_outputs.concourse_dns_name ))
       external_url: (( concat "https://" terraform_outputs.concourse_dns_name ))
       basic_auth_username: admin
       basic_auth_password: (( grab secrets.concourse_atc_password ))
       publicly_viewable: true
 
-      databases: 
+      databases:
         - name: atc
           role: atc
           password: dummy-password
 
       postgresql:
-        roles:
-          - *atc-role
         address: 127.0.0.1:5432
         database: atc
-        role: &atc-role
+        role:
           name: atc
           password: dummy-password
       tsa:
@@ -112,11 +108,6 @@ jobs:
         graph_cleanup_threshold_in_mb: 3072
       baggageclaim:
         url: "http://127.0.0.1:7788"
-      groundcrew:
-        additional_resource_types:
-          - { type: s3-iam, image: "docker:///governmentpaas/s3-resource" }
-          - { type: semver-iam, image: "docker:///governmentpaas/semver-resource" }
-          - { type: git-gpg, image: "docker:///governmentpaas/git-resource" }
 
 cloud_provider:
   template: {name: aws_cpi, release: bosh-aws-cpi}
