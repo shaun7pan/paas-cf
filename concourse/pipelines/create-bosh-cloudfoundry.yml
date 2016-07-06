@@ -776,7 +776,7 @@ jobs:
       - task: bosh-init-microbosh
         config:
           platform: linux
-          image: docker:///governmentpaas/bosh-init
+          image: docker:///governmentpaas/bosh-init#117991263_upgrade_bosh_init
           inputs:
             - name: bosh-manifest
             - name: bosh-init-state
