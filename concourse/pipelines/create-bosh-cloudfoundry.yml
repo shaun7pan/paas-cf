@@ -1577,9 +1577,8 @@ jobs:
       - do:
         - task: create-temp-user
           file: paas-cf/concourse/tasks/create_admin.yml
-          config:
-            params:
-              PREFIX: smoketest-user
+          params:
+            PREFIX: smoketest-user
 
         - task: smoke-tests-config
           file: paas-cf/concourse/tasks/smoke-tests-config.yml
@@ -1612,9 +1611,8 @@ jobs:
       - do:
         - task: create-temp-user
           file: paas-cf/concourse/tasks/create_admin.yml
-          config:
-            params:
-              PREFIX: acceptance-test-user
+          params:
+            PREFIX: acceptance-test-user
 
         - task: generate-test-config
           config:
@@ -1702,9 +1700,8 @@ jobs:
       - do:
         - task: create-temp-user
           file: paas-cf/concourse/tasks/create_admin.yml
-          config:
-            params:
-              PREFIX: custom-acceptance-test-user
+          params:
+            PREFIX: custom-acceptance-test-user
 
         - task: generate-test-config
           file: paas-cf/concourse/tasks/generate-test-config.yml
@@ -1801,9 +1798,8 @@ jobs:
       - do:
         - task: create-temp-user
           file: paas-cf/concourse/tasks/create_admin.yml
-          config:
-            params:
-              PREFIX: performance-tests-user
+          params:
+            PREFIX: performance-tests-user
 
         - task: generate-test-config
           file: paas-cf/concourse/tasks/generate-test-config.yml
@@ -1994,9 +1990,8 @@ jobs:
       - do:
         - task: create-temp-user
           file: paas-cf/concourse/tasks/create_admin.yml
-          config:
-            params:
-              PREFIX: cont-smoketest-user
+          params:
+            PREFIX: cont-smoketest-user
 
         - task: smoke-tests-config
           file: paas-cf/concourse/tasks/smoke-tests-config.yml
