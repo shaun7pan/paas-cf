@@ -3,11 +3,11 @@ name: concourse
 
 releases:
   - name: concourse
-    url: https://bosh.io/d/github.com/concourse/concourse?v=1.3.1
-    sha1: c04f2064dc3886f69bafaa81a0c96510ec82c2dc
+    url: https://bosh.io/d/github.com/concourse/concourse?v=1.4.0
+    sha1: b77b05b1d85398f61071b2b551c4108f957f00ec
   - name: garden-runc
-    url: https://bosh.io/d/github.com/cloudfoundry-incubator/garden-runc-release?v=0.3.0
-    sha1: 40130e394b3f623b36f322f18097b0d3d6780127
+    url: https://bosh.io/d/github.com/cloudfoundry-incubator/garden-runc-release?v=0.4.0
+    sha1: b59fb02eeae70104486251c82099316af04b77b7
   # When updating the version of the CPI here, the version used in the
   # bosh-init container must also be updated so that the cached CPI compile
   # will be used.
