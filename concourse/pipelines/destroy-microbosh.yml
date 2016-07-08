@@ -1,23 +1,23 @@
 ---
 resource_types:
-- name: git-gpg
+- name: git
   type: docker-image
   source:
     repository: governmentpaas/git-resource
 
-- name: s3-iam
+- name: s3
   type: docker-image
   source:
     repository: governmentpaas/s3-resource
 
-- name: semver-iam
+- name: semver
   type: docker-image
   source:
     repository: governmentpaas/semver-resource
 
 resources:
   - name: paas-cf
-    type: git-gpg
+    type: git
     source:
       uri: https://github.com/alphagov/paas-cf.git
       branch: {{branch_name}}
@@ -25,56 +25,56 @@ resources:
       commit_verification_key_ids: {{gpg_ids}}
 
   - name: vpc-tfstate
-    type: s3-iam
+    type: s3
     source:
       bucket: {{state_bucket}}
       region_name: {{aws_region}}
       versioned_file: vpc.tfstate
 
   - name: bosh-tfstate
-    type: s3-iam
+    type: s3
     source:
       bucket: {{state_bucket}}
       region_name: {{aws_region}}
       versioned_file: bosh.tfstate
 
   - name: bosh-init-state
-    type: s3-iam
+    type: s3
     source:
       bucket: {{state_bucket}}
       region_name: {{aws_region}}
       versioned_file: {{bosh_manifest_state}}
 
   - name: bosh-manifest
-    type: s3-iam
+    type: s3
     source:
       bucket: {{state_bucket}}
       region_name: {{aws_region}}
       versioned_file: bosh-manifest.yml
 
   - name: bosh-secrets
-    type: s3-iam
+    type: s3
     source:
       bucket: {{state_bucket}}
       region_name: {{aws_region}}
       versioned_file: bosh-secrets.yml
 
   - name: pipeline-trigger
-    type: semver-iam
+    type: semver
     source:
       bucket: {{state_bucket}}
       region_name: {{aws_region}}
       key: {{pipeline_trigger_file}}
 
   - name: concourse-tfstate
-    type: s3-iam
+    type: s3
     source:
       bucket: {{state_bucket}}
       versioned_file: concourse.tfstate
       region_name: {{aws_region}}
 
   - name: concourse-manifest
-    type: s3-iam
+    type: s3
     source:
       bucket: {{state_bucket}}
       region_name: {{aws_region}}

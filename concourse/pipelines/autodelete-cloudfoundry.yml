@@ -1,23 +1,23 @@
 ---
 resource_types:
-- name: git-gpg
+- name: git
   type: docker-image
   source:
     repository: governmentpaas/git-resource
 
-- name: s3-iam
+- name: s3
   type: docker-image
   source:
     repository: governmentpaas/s3-resource
 
-- name: semver-iam
+- name: semver
   type: docker-image
   source:
     repository: governmentpaas/semver-resource
 
 resources:
   - name: paas-cf
-    type: git-gpg
+    type: git
     source:
       uri: https://github.com/alphagov/paas-cf.git
       branch: {{branch_name}}
@@ -25,14 +25,14 @@ resources:
       commit_verification_key_ids: {{gpg_ids}}
 
   - name: cf-secrets
-    type: s3-iam
+    type: s3
     source:
       bucket: {{state_bucket}}
       region_name: {{aws_region}}
       versioned_file: cf-secrets.yml
 
   - name: cf-manifest
-    type: s3-iam
+    type: s3
     source:
       bucket: {{state_bucket}}
       region_name: {{aws_region}}
@@ -46,14 +46,14 @@ resources:
       interval: 2h
 
   - name: bosh-secrets
-    type: s3-iam
+    type: s3
     source:
       bucket: {{state_bucket}}
       region_name: {{aws_region}}
       versioned_file: bosh-secrets.yml
 
   - name: bosh-CA
-    type: s3-iam
+    type: s3
     source:
       bucket: {{state_bucket}}
       region_name: {{aws_region}}
