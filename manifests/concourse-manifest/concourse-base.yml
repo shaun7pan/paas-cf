@@ -3,8 +3,8 @@ name: concourse
 
 releases:
   - name: concourse
-    url: https://bosh.io/d/github.com/concourse/concourse?v=1.4.0
-    sha1: b77b05b1d85398f61071b2b551c4108f957f00ec
+    url: https://bosh.io/d/github.com/concourse/concourse?v=1.4.1
+    sha1: 25b0b3adab9113ae936b695e39b673c5dc0c3dd1
   - name: garden-runc
     url: https://bosh.io/d/github.com/cloudfoundry-incubator/garden-runc-release?v=0.4.0
     sha1: b59fb02eeae70104486251c82099316af04b77b7
