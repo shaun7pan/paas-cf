@@ -1,0 +1,56 @@
+---
+releases:
+- name: collectd
+  sha1: 5e5c196f9c95fe12eb17bba0f40fdaecaddd6424
+  url: https://github.com/alphagov/paas-collectd-boshrelease/releases/download/0.4/collectd-0.4.tgz
+
+jobs:
+- name: bosh
+  templates:
+  - {name: collectd, release: collectd}
+
+properties:
+  collectd:
+    interval: 10
+    config: |
+      LoadPlugin cpu
+      LoadPlugin disk
+      LoadPlugin entropy
+      LoadPlugin interface
+      LoadPlugin load
+      LoadPlugin memory
+      LoadPlugin swap
+      LoadPlugin uptime
+
+      LoadPlugin df
+      <Plugin df>
+        ReportInodes true
+        ReportReserved true
+      </Plugin>
+
+      LoadPlugin syslog
+      <Plugin syslog>
+        LogLevel warning
+        NotifyLevel WARNING
+      </Plugin>
+
+      LoadPlugin vmem
+      <Plugin vmem>
+        Verbose false
+      </Plugin>
+
+      LoadPlugin "write_graphite"
+      <Plugin "write_graphite">
+       <Node "myNode">
+         # Host is the static IP of Graphite, which is defined in the
+         # CloudFoundry manifest. The CloudFoundry manifest is rendered
+         # separately, and therefore this value cannot be templated in.
+         Host "10.0.16.20"
+         Port "2003"
+         Prefix "collectd."
+         EscapeCharacter "_"
+         SeparateInstances true
+         StoreRates false
+         AlwaysAppendDS false
+       </Node>
+      </Plugin>
