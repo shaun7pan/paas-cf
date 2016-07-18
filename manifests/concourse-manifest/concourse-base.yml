@@ -8,6 +8,9 @@ releases:
   - name: garden-linux
     url: https://bosh.io/d/github.com/cloudfoundry-incubator/garden-linux-release?v=0.334.0
     sha1: 85170c5089fa4ff317f139c2f1da024860dbea85
+  - name: collectd
+    sha1: 5e5c196f9c95fe12eb17bba0f40fdaecaddd6424
+    url: https://github.com/alphagov/paas-collectd-boshrelease/releases/download/0.4/collectd-0.4.tgz
   # When updating the version of the CPI here, the version used in the
   # bosh-init container must also be updated so that the cached CPI compile
   # will be used.
@@ -70,6 +73,7 @@ jobs:
       - {release: concourse, name: tsa}
       - {release: concourse, name: baggageclaim}
       - {release: garden-linux, name: garden}
+      - {release: collectd, name: collectd}
 
     networks:
       - name: public
@@ -112,6 +116,50 @@ jobs:
           - { type: s3-iam, image: "docker:///governmentpaas/s3-resource" }
           - { type: semver-iam, image: "docker:///governmentpaas/semver-resource" }
           - { type: git-gpg, image: "docker:///governmentpaas/git-resource" }
+      collectd:
+        config: |
+          LoadPlugin cpu
+          LoadPlugin disk
+          LoadPlugin entropy
+          LoadPlugin interface
+          LoadPlugin load
+          LoadPlugin memory
+          LoadPlugin swap
+          LoadPlugin uptime
+
+          LoadPlugin df
+          <Plugin df>
+            ReportInodes true
+            ReportReserved true
+          </Plugin>
+
+          LoadPlugin syslog
+          <Plugin syslog>
+            LogLevel warning
+            NotifyLevel WARNING
+          </Plugin>
+
+          LoadPlugin vmem
+          <Plugin vmem>
+            Verbose false
+          </Plugin>
+
+          LoadPlugin "write_graphite"
+          <Plugin "write_graphite">
+           <Node "myNode">
+             # Host is the static IP of Graphite, which is defined in the
+             # CloudFoundry manifest. The CloudFoundry manifest is rendered
+             # separately, and therefore this value cannot be templated in.
+             Host "10.0.16.20"
+             Port "2003"
+             Prefix "collectd."
+             EscapeCharacter "_"
+             SeparateInstances true
+             StoreRates false
+             AlwaysAppendDS false
+           </Node>
+          </Plugin>
+        interval: 10
 
 cloud_provider:
   template: {name: aws_cpi, release: bosh-aws-cpi}
