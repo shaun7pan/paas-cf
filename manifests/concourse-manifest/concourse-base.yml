@@ -152,7 +152,7 @@ jobs:
              # separately, and therefore this value cannot be templated in.
              Host "10.0.16.20"
              Port "2003"
-             Prefix "collectd."
+             Prefix "collectd.concourse."
              EscapeCharacter "_"
              SeparateInstances true
              StoreRates false
