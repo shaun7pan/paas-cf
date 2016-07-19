@@ -45,6 +45,7 @@ module ManifestHelpers
         File.expand_path("../../../../shared/spec/fixtures/terraform/*.yml", __FILE__),
         File.expand_path("../../../../shared/spec/fixtures/cf-secrets.yml", __FILE__),
         File.expand_path("../../../../shared/spec/fixtures/cf-ssl-certificates.yml", __FILE__),
+        File.expand_path("../../../../shared/deployments/collectd.yml", __FILE__),
         grafana_dashboards_manifest_path,
         File.expand_path("../../../manifest/env-specific/cf-#{environment}.yml", __FILE__),
     ])

@@ -1109,8 +1109,9 @@ jobs:
                 ./terraform-outputs/*.yml
                 ./cf-secrets/cf-secrets.yml
                 ./certs/*.yml
-                ./paas-cf/manifests/cf-manifest/manifest/env-specific/{{cf_env_specific_manifest}}
+                ./paas-cf/manifests/shared/deployments/collectd.yml
                 ./grafana-dashboards-manifest/grafana-dashboards-manifest.yml
+                ./paas-cf/manifests/cf-manifest/manifest/env-specific/{{cf_env_specific_manifest}}
             run:
               path: sh
               args:
