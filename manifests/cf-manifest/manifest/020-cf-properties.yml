@@ -272,7 +272,7 @@ properties:
         non_basic_services_allowed: true
         total_routes: 1000
       large:
-        memory_limit: 102400
+        memory_limit: 102401
         total_services: 10
         non_basic_services_allowed: true
         total_routes: 1000
