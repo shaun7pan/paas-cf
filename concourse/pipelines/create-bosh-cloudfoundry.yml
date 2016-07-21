@@ -1366,6 +1366,17 @@ jobs:
 
                   echo | cf login -a "${API_ENDPOINT}" -u "${CF_ADMIN}" -p "${CF_PASS}"
 
+                  # FIXME: remove this block once it's been run on production.
+                  # Rename the paas_demo quota to small if it exists before creating/updating quotas
+                  # so that existing orgs with the paas_demo quota get the small quota
+                  apt-get install -y --no-install-recommends jq
+                  paas_demo_url=$(cf curl /v2/quota_definitions | jq '.resources | map(select(.entity.name == "paas_demo"))[0].metadata.url')
+                  if [ "${paas_demo_url}" == "null" ]; then
+                    echo "paas_demo quota doesn't exist, skipping rename"
+                  else
+                    cf curl "${paas_demo_url}" -d '{"name": "small"}'
+                  fi
+
                   ./paas-cf/concourse/scripts/set_quotas_from_manifest.rb cf-manifest/cf-manifest.yml
 
 
